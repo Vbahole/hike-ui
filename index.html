@@ -24,11 +24,11 @@
   <script>
 
   // Initialize the Amazon Cognito credentials provider
-  AWS.config.region = 'us-east-1'; // Region
+  AWS.config.region = 'us-east-1';
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'us-east-1:8c2e1469-1d7e-404f-a9b2-aa95061882d2',
+    IdentityPoolId: "us-east-1:8c2e1469-1d7e-404f-a9b2-aa95061882d2",
+    RoleArn: "arn:aws:iam::056681376773:role/Cognito_DynamoPoolUnauth"
   });
-
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
