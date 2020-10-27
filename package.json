@@ -1,12 +1,12 @@
 {
-  "name": " ",
+  "name": "hike",
   "version": "0.0.1",
-  "description": "",
+  "description": "a hiking app",
   "keywords": [
     ""
   ],
   "license": "",
-  "author": "",
+  "author": "kevin gooss",
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html --open",
