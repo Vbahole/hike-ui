@@ -33,13 +33,11 @@
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 function readItem() {
-    var table = "hike";
-    var hash = 'stat';
-
     var params = {
-        TableName: table,
+        TableName: 'hike',
         Key:{
-            "h": hash
+            h: 'stat',
+            r: 'overall'
         }
     };
     docClient.get(params, function(err, data) {
