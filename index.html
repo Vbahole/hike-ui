@@ -20,15 +20,48 @@
   <link rel="stylesheet" href="css/style.css">
 
   <meta name="theme-color" content="#fafafa">
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
+  <script>
+
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: "us-east-1:8c2e1469-1d7e-404f-a9b2-aa95061882d2",
+    RoleArn: "arn:aws:iam::056681376773:role/Cognito_DynamoPoolUnauth"
+  });
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+function readItem() {
+    var table = "hike";
+    var hash = 'stat';
+
+    var params = {
+        TableName: table,
+        Key:{
+            "h": hash
+        }
+    };
+    docClient.get(params, function(err, data) {
+        if (err) {
+            document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
+        } else {
+            document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+        }
+    });
+}
+
+</script>
 </head>
 
 <body>
 
   <!-- Add your site or application content here -->
   <p>Hello world! Welcome to hike.</p>
+  <input id="readItem" type="button" value="Read Item" onclick="readItem();" />
+  <br><br>
+  <textarea readonly id= "textarea" style="width:400px; height:800px"></textarea>
+
   <script src="js/vendor/modernizr-3.11.3.min.js"></script>
   <script src="js/app.js"></script>
-  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
 </body>
 
 </html>
