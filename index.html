@@ -22,6 +22,9 @@
   <meta name="theme-color" content="#fafafa">
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
   <script>
+  AWS.config.update({
+    region: "us-east-1"
+  });
 
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: "us-east-1:8c2e1469-1d7e-404f-a9b2-aa95061882d2",
