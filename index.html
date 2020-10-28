@@ -22,14 +22,20 @@
   <meta name="theme-color" content="#fafafa">
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
   <script>
+    let data;
 
-function readApi() {
-  let data = 'blah blah blah';
-  // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-  document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
-}
+    function readApi() {
+      // call http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
+      fetch('http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats')
+        .then(response => {
+          data = response.json();
+        });
 
-</script>
+      //let data = 'blah blah blah';
+      // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+      document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
+    }
+  </script>
 </head>
 
 <body>
@@ -38,7 +44,7 @@ function readApi() {
   <p>Hello world! Welcome to hike.</p>
   <input id="readApi" type="button" value="Read Api" onclick="readApi();" />
   <br><br>
-  <textarea readonly id= "textarea" style="width:400px; height:800px"></textarea>
+  <textarea readonly id="textarea" style="width:400px; height:800px"></textarea>
 
   <script src="js/vendor/modernizr-3.11.3.min.js"></script>
   <script src="js/app.js"></script>
