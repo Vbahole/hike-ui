@@ -25,11 +25,10 @@
     let data;
 try {
     function readApi() {
-      // call http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
-      //     http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
-      // 54.89.84.212
+      // http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
+      // 5http://54.89.84.212:8081/stats
       // ec2-54-89-84-212.compute-1.amazonaws.com
-      fetch('http://54.89.84.212:8081/stats')
+      fetch('http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats')
         .then(response => {
           data = response.json();
         });

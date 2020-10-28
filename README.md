@@ -18,3 +18,4 @@ the api ec2 instance now has rights to access dynamo as needed. I just need the 
 not sure if this is enabled by default yet....it is not. fetching from the ui to
 'http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats' does not work...yet
 maybe i need to be using the elastic ip of the api instance?
+I think the reason this is not working is because it is the `browser` trying to call the api when it needs to be the server-side of the ui making the call!!
