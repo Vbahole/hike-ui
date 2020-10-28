@@ -23,10 +23,12 @@
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
   <script>
     let data;
-
+try {
     function readApi() {
       // call http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
+      //     http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
       // 54.89.84.212
+      // ec2-54-89-84-212.compute-1.amazonaws.com
       fetch('http://54.89.84.212:8081/stats')
         .then(response => {
           data = response.json();
@@ -36,6 +38,10 @@
       // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
       document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
     }
+  } catch (err)
+  {
+    console.log('error', err);
+  }
   </script>
 </head>
 
