@@ -15,4 +15,6 @@ assigned that role to the cognito identity pool
 for one, I don't want the ui to even indicate that there is a dynamo table behind all of this. let alone show how it is being access via cognito - but it's right there in the code. my cognito pool id is visible in the script section of the index.html page. not sure if that is really a security hazard but there is a better way.....
 the answer is to abstract all of the dynamo work to the api and have the ui call the api as needed.
 the api ec2 instance now has rights to access dynamo as needed. I just need the ui to call the api for data.
-not sure if this is enabled by default yet....
+not sure if this is enabled by default yet....it is not. fetching from the ui to
+'http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats' does not work...yet
+maybe i need to be using the elastic ip of the api instance?
