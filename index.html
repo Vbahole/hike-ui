@@ -23,38 +23,10 @@
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
   <script>
 
-  // Initialize the Amazon Cognito credentials provider
-  AWS.config.region = 'us-east-1';
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: "us-east-1:8c2e1469-1d7e-404f-a9b2-aa95061882d2"
-  });
-
-  // Make the call to obtain credentials
-  AWS.config.credentials.get(function(){
-      // Credentials will be available when this function is called.
-      var accessKeyId = AWS.config.credentials.accessKeyId;
-      var secretAccessKey = AWS.config.credentials.secretAccessKey;
-      var sessionToken = AWS.config.credentials.sessionToken;
-  });
-
-
-var docClient = new AWS.DynamoDB.DocumentClient();
-
-function readItem() {
-    var params = {
-        TableName: 'hike',
-        Key:{
-            h: 'stat',
-            r: 'overall'
-        }
-    };
-    docClient.get(params, function(err, data) {
-        if (err) {
-            document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
-        } else {
-            document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-        }
-    });
+function readApi() {
+  let data = 'blah blah blah';
+  // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+  document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
 }
 
 </script>
@@ -64,7 +36,7 @@ function readItem() {
 
   <!-- Add your site or application content here -->
   <p>Hello world! Welcome to hike.</p>
-  <input id="readItem" type="button" value="Read Item" onclick="readItem();" />
+  <input id="readApi" type="button" value="Read Api" onclick="readApi();" />
   <br><br>
   <textarea readonly id= "textarea" style="width:400px; height:800px"></textarea>
 
