@@ -48,12 +48,13 @@
             console.log("back from getStats", data);
             console.log(data); // JSON data parsed by `data.json()` call
             stats = data;
+            document.getElementById('textarea').innerHTML = `GetApi succeeded: ${stats}`;
           });
 
 
           //let data = 'blah blah blah';
           // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-          document.getElementById('textarea').innerHTML = `GetApi succeeded: ${stats}`;
+
         }
       } catch (err) {
         console.log('error', err);
