@@ -23,36 +23,25 @@
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.779.0.min.js"></script>
   <script>
     let data;
-    try {
-      function readApi() {
-        // http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
-        // 5http://54.89.84.212:8081/stats
-        // ec2-54-89-84-212.compute-1.amazonaws.com
-        // gateway api to lambda application - https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
-        const url = 'https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats';
-        fetch('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats', {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-              'Content-Type': 'application/json'
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer'
-          })
-          .then(response => {
-            data = response.json();
-          });
+try {
+    function readApi() {
+      // http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
+      // 5http://54.89.84.212:8081/stats
+      // ec2-54-89-84-212.compute-1.amazonaws.com
+      // gateway api to lambda application - https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
+      fetch('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats')
+        .then(response => {
+          data = response.json();
+        });
 
-        //let data = 'blah blah blah';
-        // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-        document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
-      }
-    } catch (err) {
-      console.log('error', err);
+      //let data = 'blah blah blah';
+      // document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+      document.getElementById('textarea').innerHTML = `GetApi succeeded: ${data}`;
     }
+  } catch (err)
+  {
+    console.log('error', err);
+  }
   </script>
 </head>
 
