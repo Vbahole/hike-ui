@@ -34,3 +34,5 @@ used a sample lambda application to create:
 configured a gateway resource at GET /stats
 which runs the lambda (no parameters needed) that queries dynamoDb for the overall stats
 the api gateway handles the CORS so the gateway endpoint should work from the browser
+
+MAJOR HASSLE trying to get cors working on the gateway api OPTIONS endpoint. first i tried to use the one that gateway generates by enabling cors and it was always screwed up and was not returning the proper allow-origin header. finally figured out that the sample code i was using acutally sets the response headers on the way out the door and that the `lamda proxy integration` puts them in the response. so i had to route the OPTIONS call to the lambda just like the GET call was. proxy integration is a way of telling lambda to take all of the headers and all of the other information that is NOT in the body and also make it available to the lambda code via the event object. So it works on the way in and on the way out to generate response headers. Once i got that header correct it started working. so now ui can hit api.....finally
