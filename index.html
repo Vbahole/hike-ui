@@ -31,8 +31,9 @@
         // gateway api to lambda application - https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
         fetch('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats')
           .then(response => {
-            console.info('got something!!!');
+            console.log('got something!!!', response);
             data = response.json();
+            console.log('got data?', data);
           });
 
         //let data = 'blah blah blah';
