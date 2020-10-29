@@ -25,35 +25,19 @@
     let stats;
     try {
       function readApi() {
-        // gateway api to lambda application - https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
-        /*
-                fetch('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats')
-                  .then(response => {
-                    console.log('got something!!!', response);
-                    data = response.json();
-                    console.log('got data?', data);
-                  });
-        */
         async function getStats(url = '') {
-          // Default options are marked with *
-          console.log("in getStats");
           const response = await fetch(url);
-          console.log("in getStats, just fetched");
           return response.json(); // parses JSON response into native JavaScript objects
         }
-
-        console.log("calling getStats");
         getStats('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats')
           .then(data => {
-            console.log("back from getStats", data);
-            console.log(data); // JSON data parsed by `data.json()` call
             stats = data;
             document.getElementById('textarea').innerHTML = `GetApi succeeded: ${JSON.stringify(stats)}`;
           });
-        }
-      } catch (err) {
-        console.log('error', err);
       }
+    } catch (err) {
+      console.log('error', err);
+    }
   </script>
 </head>
 
