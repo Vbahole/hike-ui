@@ -48,7 +48,7 @@
             console.log("back from getStats", data);
             console.log(data); // JSON data parsed by `data.json()` call
             stats = data;
-            document.getElementById('textarea').innerHTML = `GetApi succeeded: ${stats}`;
+            document.getElementById('textarea').innerHTML = `GetApi succeeded: ${JSON.stringify(stats)}`;
           });
 
 
