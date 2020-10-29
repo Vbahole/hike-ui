@@ -28,7 +28,8 @@ try {
       // http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats
       // 5http://54.89.84.212:8081/stats
       // ec2-54-89-84-212.compute-1.amazonaws.com
-      fetch('http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats')
+      // gateway api to lambda application - https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
+      fetch('https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats')
         .then(response => {
           data = response.json();
         });

@@ -18,4 +18,19 @@ the api ec2 instance now has rights to access dynamo as needed. I just need the 
 not sure if this is enabled by default yet....it is not. fetching from the ui to
 'http://ec2-54-89-84-212.compute-1.amazonaws.com:8081/stats' does not work...yet
 maybe i need to be using the elastic ip of the api instance?
-I think the reason this is not working is because it is the `browser` trying to call the api when it needs to be the server-side of the ui making the call!!
+I think the reason this is not working is because it is the `browser` trying to call the api when it needs to be the server-side of the ui making the call.
+
+## Using AWS Api Gateway
+create an api gateway to sit in front of the api webserver and to broker calls to it.
+i have a sample express api running on an ec2 instance but this could just as easily be a lamba or 2.
+gateway supports either lambda or http backend `integrations`.
+
+THIS DOCUMENTATION BELONGS IN THE LAMBDA repo
+https://8tdvb17zme.execute-api.us-east-1.amazonaws.com/prod/stats
+used a sample lambda application to create:
+- api Gateway (along with a deployment and a stage named prod)
+- lambda (along with a permission and an IAM role)
+
+configured a gateway resource at GET /stats
+which runs the lambda (no parameters needed) that queries dynamoDb for the overall stats
+the api gateway handles the CORS so the gateway endpoint should work from the browser
