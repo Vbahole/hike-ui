@@ -1,5 +1,11 @@
 # hike-ui
 
+## css framework
+going with boostrap since i don't know anything else
+
+## js framework
+maybe i need one? maybe i don't.
+
 ## ui needs data - get it by querying dynamo directly
 one way to get the data is to pull it directly from dynamo when the ui page loads
 that can be done via cognito to permit unauthorized access to dynamo via the web
