@@ -1,0 +1,12 @@
+Resources:
+  Ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0947d2ba12ee1ff75
+      KeyName: hikewebserverkp
+      Tags:
+        - Key: Name
+          Value: hike-webserver2
+        - Key: Type
+          Value: Worker Instance
