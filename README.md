@@ -1,5 +1,53 @@
 # hike-ui
 
+## AWS - killing the web server and starting again
+node and nvm got all jacked up on the webserver so i want to recreate it and start over.
+Here are the instructions:
+
+1. before we kill the existing webserver instance we need some info from it:
+name: hike-webserver
+Elastic IP address: 34.201.181.141 this associates the server with our DNS entry so you can get to it on the innernets. we need that on the replacement web server.
+instance type:t2.micro
+ami: aws linux 2 (ami id = ami-0947d2ba12ee1ff75)
+keypair: hikewebserverkp
+vpc: hike-vpc
+sg: sg-072985519b3e6f0bd (webserver-sg) - for all of the ports to open
+
+2. kill the instance - will lose all of the code and installs but it's all on git
+3. launch new instance - enter name, sg, keypair, and launch!
+4. associate elastic ip - go to ec2>elastic ip>associate and choose the new instance
+5. try to connect via ssh to the new instance - may see a message about REMOTE HOST IDENTIFICATION HAS CHANGED follow the command they suggest and the error will go away and you can connect
+6. run commands on instance to get it updated - these can also be included in the user data when spinning up the instance on the Configure Instance tab (you need the bin/bash if you go that route but not the sudo). also, decide if you want apache
+
+`
+#!/bin/bash
+sudo yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+`
+
+7. want node instead of apache run:
+- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+- . ~/.nvm/nvm.sh
+- nvm install node
+- npm --version
+- nvm --version
+
+8. how about git? sudo yum install git -y
+9. now you can pull code over from git as a means to deploy
+10. if you are running an express/node app on a port that port needs to be exposed as part of the inbound rules. Edit the security group, add an inbound custom TCP rule for that port and all from anywhere.
+11. now you should be able to access the express site from both the ec2 public ip (ec2-34-201-181-141.compute-1.amazonaws.com:3100) or the DNS name (http://hike.vbahole.com:3100/)
+12. nginx install - `sudo amazon-linux-extras install nginx1` then to fire it up `sudo systemctl start nginx` Now the home url (http://hike.vbahole.com/) should display the nginx page
+13. Dockerize this entire workflow - then we don't need to install anything on the ec2 instance if we choose an ami that already has docker!
+
+
+## css framework
+going with boostrap since i don't know anything else
+
+## js framework
+maybe i need one? maybe i don't.
+
 ## ui needs data - get it by querying dynamo directly
 one way to get the data is to pull it directly from dynamo when the ui page loads
 that can be done via cognito to permit unauthorized access to dynamo via the web
