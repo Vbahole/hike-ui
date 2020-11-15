@@ -2,7 +2,7 @@
 
 
 ## Linux Getting Fried on Chromebook
-Around the start of November 2020 the linux install on Lily's chromebook just stopped working - could not open the terminal, atom or access any files in the linux drive.  This really sucked. But I was able to disable then re-enable linux and it appears to be working now, but with none of my original files, updates, aliases or installs. but I learned a valuable lesson: 1. KEEP KEYPAIR FILES IN SEVERAL LOCATIONS. without them my ec2 instance is no longer accessible so i have to kill it. Not a really big deal but always keep the key files on the linux and local drives. Could still get lost if the chromebook dies.
+Around the start of November 2020 the linux install on Lily's chromebook just stopped working - could not open the terminal, atom or access any files in the linux drive.  This really sucked. But I was able to disable then re-enable linux and it appears to be working now, but with none of my original files, updates, aliases or installs. but I learned a valuable lesson: 1. KEEP KEYPAIR (.pem) FILES IN SEVERAL LOCATIONS. without them my ec2 instance is no longer accessible so i have to kill it. Not a really big deal but always keep the key files on the linux and local drives. Could still get lost if the chromebook dies.
 ### Recovering EC2 Instances:
 1. kill the rogue ec2 instance
 2. follow directions below to recreate it to where it was (could also just be using docker OR a custom aws ami image)  
@@ -32,7 +32,7 @@ Here are the instructions:
 - Elastic IP address: 34.201.181.141 this associates the server with our DNS entry so you can get to it on the innernets. we need that on the replacement web server.
 - instance type:t2.micro
 - ami: aws linux 2 (ami id = ami-0947d2ba12ee1ff75)
-- keypair: hikewebserverkp
+- keypair: hike-kp
 - vpc: hike-vpc
 - sg: sg-072985519b3e6f0bd (webserver-sg) - for all of the ports to open
 
