@@ -28,13 +28,13 @@ node and nvm got all jacked up on the webserver so i want to recreate it and sta
 Here are the instructions:
 
 1. before we kill the existing webserver instance we need some info from it:
-name: hike-webserver
-Elastic IP address: 34.201.181.141 this associates the server with our DNS entry so you can get to it on the innernets. we need that on the replacement web server.
-instance type:t2.micro
-ami: aws linux 2 (ami id = ami-0947d2ba12ee1ff75)
-keypair: hikewebserverkp
-vpc: hike-vpc
-sg: sg-072985519b3e6f0bd (webserver-sg) - for all of the ports to open
+- name: hike-webserver
+- Elastic IP address: 34.201.181.141 this associates the server with our DNS entry so you can get to it on the innernets. we need that on the replacement web server.
+- instance type:t2.micro
+- ami: aws linux 2 (ami id = ami-0947d2ba12ee1ff75)
+- keypair: hikewebserverkp
+- vpc: hike-vpc
+- sg: sg-072985519b3e6f0bd (webserver-sg) - for all of the ports to open
 
 2. kill the instance - will lose all of the code and installs but it's all on git
 3. launch new instance - enter name, sg, keypair, and launch!
