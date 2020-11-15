@@ -15,17 +15,13 @@ Around the start of November 2020 the linux install on Lily's chromebook just st
 - `sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'`
 - `sudo apt-get install atom`
 
-How much space is there after all of that? I think I set linux to 9 or 10 GB when i enabled it
-gooss22@penguin:~$ df
-Filesystem     1K-blocks    Used Available Use% Mounted on
-/dev/vdb        10066328 1869476   7279068  30% /
-none                 492       0       492   0% /dev
-devtmpfs         1420880       0   1420880   0% /dev/tty
-/dev/vdb        10066328 1869476   7279068  30% /dev/wl0
-
 OR use the handy shell script i wrote in the root of this repo. first `chmod +x linux-recovery.sh` then `./linux-recovery.sh`
 
-
+### space 
+How much space is there after all of that if we start with a 9GB install? 
+run `df`
+/dev/vdb 33% /  
+/dev/vdb 33% /dev/wl0
 
 ## AWS - killing the web server and starting again
 node and nvm got all jacked up on the webserver so i want to recreate it and start over.
