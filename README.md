@@ -19,7 +19,7 @@ OR use the handy shell script i wrote in the root of this repo. first `chmod +x 
 
 ### space 
 How much space is there after all of that if we start with a 9GB install? 
-run `df`
+run `df`  
 /dev/vdb 33% /  
 /dev/vdb 33% /dev/wl0
 
