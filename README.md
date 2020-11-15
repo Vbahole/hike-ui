@@ -1,5 +1,31 @@
 # hike-ui
 
+
+## Linux Getting Fried on Chromebook
+Around the start of November 2020 the linux install on Lily's chromebook just stopped working - could not open the terminal, atom or access any files in the linux drive.  This really sucked. But I was able to disable then re-enable linux and it appears to be working now, but with none of my original files, updates, aliases or installs. but I learned a valuable lesson: 1. KEEP KEYPAIR FILES IN SEVERAL LOCATIONS. without them my ec2 instance is no longer accessible so i have to kill it. Not a really big deal but always keep the key files on the linux and local drives. Could still get lost if the chromebook dies.
+Recovering from that (EC2):
+1. kill the rogue ec2 instance
+2. follow directions below to recreate it to where it was (could also just be using docker OR a custom aws ami image)
+Recovering linux:
+1. add aliases if you want to .bashrc
+2. update everything
+- `sudo apt-get update && sudo apt-get upgrade`
+- `sudo apt-get install git`
+- `wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add`
+- `sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'`
+- `sudo apt-get install atom`
+
+How much space is there after all of that? I think I set linux to 9 or 10 GB when i enabled it
+gooss22@penguin:~$ df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/vdb        10066328 1869476   7279068  30% /
+none                 492       0       492   0% /dev
+devtmpfs         1420880       0   1420880   0% /dev/tty
+/dev/vdb        10066328 1869476   7279068  30% /dev/wl0
+
+
+
+
 ## AWS - killing the web server and starting again
 node and nvm got all jacked up on the webserver so i want to recreate it and start over.
 Here are the instructions:
