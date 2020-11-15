@@ -23,6 +23,7 @@ none                 492       0       492   0% /dev
 devtmpfs         1420880       0   1420880   0% /dev/tty
 /dev/vdb        10066328 1869476   7279068  30% /dev/wl0
 
+OR use the handy shell script i wrote in the root of this repo. first `chmod +x linux-recovery.sh` then `./linux-recovery.sh`
 
 
 
