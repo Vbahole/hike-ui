@@ -3,7 +3,7 @@
 
 ## Linux Getting Fried on Chromebook
 Around the start of November 2020 the linux install on Lily's chromebook just stopped working - could not open the terminal, atom or access any files in the linux drive.  This really sucked. But I was able to disable then re-enable linux and it appears to be working now, but with none of my original files, updates, aliases or installs. but I learned a valuable lesson: 1. KEEP KEYPAIR FILES IN SEVERAL LOCATIONS. without them my ec2 instance is no longer accessible so i have to kill it. Not a really big deal but always keep the key files on the linux and local drives. Could still get lost if the chromebook dies.
-### Recovering from that (EC2):
+### Recovering EC2 Instances:
 1. kill the rogue ec2 instance
 2. follow directions below to recreate it to where it was (could also just be using docker OR a custom aws ami image)  
 ### Recovering linux:
