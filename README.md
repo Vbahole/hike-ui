@@ -15,7 +15,7 @@ Around the start of November 2020 the linux install on Lily's chromebook just st
 - `sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'`
 - `sudo apt-get install atom`
 
-OR use the handy shell script [chrome-linux-recovery.sh](https://raw.githubusercontent.com/Vbahole/hike-ui/master/chrome-linux-recovery.sh) i wrote in the root of this repo. first `chmod +x linux-recovery.sh` then `./linux-recovery.sh`
+OR use the handy shell script [chrome-linux-recovery.sh](https://raw.githubusercontent.com/Vbahole/hike-ui/master/chrome-linux-recovery.sh) I wrote. first `chmod +x linux-recovery.sh` then `./linux-recovery.sh`
 
 ### space 
 How much space is there after all of that if we start with a 9GB install? 
