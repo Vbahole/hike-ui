@@ -40,29 +40,10 @@ Here are the instructions:
 3. launch new instance - select ami, sg, user data [ec2-user-data](https://raw.githubusercontent.com/Vbahole/hike-ui/master/ec2-user-data), Name tag, keypair, and launch!
 4. associate elastic ip - go to ec2>elastic ip>associate and choose the new instance
 5. try to connect via ssh to the new instance - may see a message about REMOTE HOST IDENTIFICATION HAS CHANGED follow the command they suggest and the error will go away and you can connect
-6. run commands on instance to get it updated - these can also be included in the user data when spinning up the instance on the Configure Instance tab (you need the bin/bash if you go that route but not the sudo). also, decide if you want apache
-
-`
-#!/bin/bash
-sudo yum update -y
-yum install httpd -y
-service httpd start
-chkconfig httpd on
-`
-
-7. want node instead of apache run:
-- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-- . ~/.nvm/nvm.sh
-- nvm install node
-- npm --version
-- nvm --version
-
-8. how about git? sudo yum install git -y
-9. now you can pull code over from git as a means to deploy
-10. if you are running an express/node app on a port that port needs to be exposed as part of the inbound rules. Edit the security group, add an inbound custom TCP rule for that port and all from anywhere.
-11. now you should be able to access the express site from both the ec2 public ip (ec2-34-201-181-141.compute-1.amazonaws.com:3100) or the DNS name (http://hike.vbahole.com:3100/)
-12. nginx install - `sudo amazon-linux-extras install nginx1` then to fire it up `sudo systemctl start nginx` Now the home url (http://hike.vbahole.com/) should display the nginx page
-13. Dockerize this entire workflow - then we don't need to install anything on the ec2 instance if we choose an ami that already has docker!
+6. now you can pull code over from git as a means to deploy
+7. if you are running an express/node app on a port that port needs to be exposed as part of the inbound rules. Edit the security group, add an inbound custom TCP rule for that port and all from anywhere.
+8. now you should be able to access the express site from both the ec2 public ip (ec2-34-201-181-141.compute-1.amazonaws.com:3100) or the DNS name (http://hike.vbahole.com:3100/)
+9. Dockerize this entire workflow - then we don't need to install anything on the ec2 instance if we choose an ami that already has docker!
 
 
 ## css framework
