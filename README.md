@@ -6,7 +6,7 @@ Around the start of November 2020 the linux install on Lily's chromebook just st
 ### Recovering EC2 Instances:
 1. kill the rogue ec2 instance
 2. follow directions below to recreate it to where it was (could also just be using docker OR a custom aws ami image)  
-### Recovering linux:
+### Recovering linux(beta) on Chromebook:
 1. add aliases if you want to .bashrc
 2. update everything
 - `sudo apt-get update && sudo apt-get upgrade`
