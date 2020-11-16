@@ -37,7 +37,7 @@ Here are the instructions:
 - sg: sg-072985519b3e6f0bd (webserver-sg) - for all of the ports to open
 
 2. kill the instance - will lose all of the code and installs but it's all on git
-3. launch new instance - enter name, sg, keypair, and launch!
+3. launch new instance - select ami, sg, user data [ec2-user-data](https://raw.githubusercontent.com/Vbahole/hike-ui/master/ec2-user-data), Name tag, keypair, and launch!
 4. associate elastic ip - go to ec2>elastic ip>associate and choose the new instance
 5. try to connect via ssh to the new instance - may see a message about REMOTE HOST IDENTIFICATION HAS CHANGED follow the command they suggest and the error will go away and you can connect
 6. run commands on instance to get it updated - these can also be included in the user data when spinning up the instance on the Configure Instance tab (you need the bin/bash if you go that route but not the sudo). also, decide if you want apache
