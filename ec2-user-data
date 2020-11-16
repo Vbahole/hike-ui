@@ -1,7 +1,6 @@
 #!/bin/bash
 yum update -y
 yum install git -y
-yum install nano -y
 amazon-linux-extras install nginx1
 systemctl start nginx
 # run the rest manually, don't want these running as root anyway
