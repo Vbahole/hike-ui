@@ -52,8 +52,16 @@ We just need to get some web code out there to run inside of nginx/node.
 On the ec2 instance we need to start routing traffic through nginx.  
 cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
 the default root location listed in there will be `/usr/share/nginx/html`  
-we can either dump our code here or edit the root location to point to our code. Let's use this location and create a directory and git clone some code to it
-in `/usr/share/nginx/html` run `sudo git clone https://github.com/Vbahole/hike-ui.git`  
+we can either dump our code here or edit the root location to point to our code. 
+Let's use our default ec2-user home directory to git clone code into
+after `cd` you should be in `/home/ec2-user` run `sudo git clone https://github.com/Vbahole/hike-ui.git`
+edit the nginx config (using nano):
+- change `user` from nginx to ec2-user
+- change the root location from `/usr/share/nginx/html` to `/home/ec2-user/hike-ui`
+- restart nginx with `sudo nginx -s reload`
+now (http://hike.vbahole.com/) will take you directly to the index.html page
+
+The restart the nginx service `sudo service nginx restart`
 Now you can access (http://hike.vbahole.com/hike-ui/)
 Another way to move content out there is via scp `scp -i <instance-ssh-private-key> -rp _site/ ubuntu@<IP>:/home/ubuntu`
 
