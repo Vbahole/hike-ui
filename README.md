@@ -45,6 +45,12 @@ Here are the instructions:
 8. now you should be able to access the express site from both the ec2 public ip (ec2-34-201-181-141.compute-1.amazonaws.com:3100) or the DNS name (http://hike.vbahole.com:3100/)
 9. Dockerize this entire workflow - then we don't need to install anything on the ec2 instance if we choose an ami that already has docker!
 
+### Configure git
+this is for the chromebook terminal (not ec2 instances)
+`git config --global user.email "gooss22@gmail.com"`
+`git config --global user.name "Vbahole"`
+but it keeps asking for pw every time
+
 ### Get some html out there
 On the new ec2 instance if you `curl http://localhost` you will get the nginx test page back. 
 The elastic ip is rigged to route 53 so [hike](http://hike.vbahole.com/) should also load this test page, as will the [elastic ip](http://34.201.181.141/)  
@@ -63,7 +69,12 @@ now (http://hike.vbahole.com/) will take you directly to the index.html page. Do
 
 The restart the nginx service `sudo service nginx restart`
 Now you can access (http://hike.vbahole.com/hike-ui/)
-Another way to move content out there is via scp `scp -i <instance-ssh-private-key> -rp _site/ ubuntu@<IP>:/home/ubuntu`
+
+to get the angular material site out there git clone into the same ecs-user home https://github.com/ajtowf/styling-applications-with-angular-material.git
+then edit the nginx.conf root location to point to /home/ec2-user/styling-applications-with-angular-material/src
+restart nginx again.
+It won't work. We have yet to run `npm install` to get all of the packages under src. And then we need to get angular up and running with `ng build`
+but first we need angular `npm install -g @angular/cli` then `ng build` then `ng s -o`
 
 
 
