@@ -3,6 +3,7 @@ yum update -y
 yum install git -y
 amazon-linux-extras install nginx1
 systemctl start nginx
+# seems to break after this part. do it manually
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
