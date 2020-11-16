@@ -59,7 +59,7 @@ edit the nginx config (using nano):
 - change `user` from nginx to ec2-user
 - change the root location from `/usr/share/nginx/html` to `/home/ec2-user/hike-ui`
 - restart nginx with `sudo nginx -s reload`
-now (http://hike.vbahole.com/) will take you directly to the index.html page
+now (http://hike.vbahole.com/) will take you directly to the index.html page. Don't forget to `npm install` within your web code if needed.
 
 The restart the nginx service `sudo service nginx restart`
 Now you can access (http://hike.vbahole.com/hike-ui/)
