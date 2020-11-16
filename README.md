@@ -45,6 +45,18 @@ Here are the instructions:
 8. now you should be able to access the express site from both the ec2 public ip (ec2-34-201-181-141.compute-1.amazonaws.com:3100) or the DNS name (http://hike.vbahole.com:3100/)
 9. Dockerize this entire workflow - then we don't need to install anything on the ec2 instance if we choose an ami that already has docker!
 
+### Get some html out there
+On the new ec2 instance if you `curl http://localhost` you will get the nginx test page back. 
+The elastic ip is rigged to route 53 so [hike](http://hike.vbahole.com/) should also load this test page, as will the [elastic ip](http://34.201.181.141/)  
+We just need to get some web code out there to run inside of nginx/node.  
+On the ec2 instance we need to start routing traffic through nginx.  
+cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
+the default root location listed in there will be `/usr/share/nginx/html`  
+we can either dump our code here or edit the root location to point to our code. Let's use this location and create a directory and git clone some code to it
+in `/usr/share/nginx/html` run `mkdir hike` 
+
+
+
 
 ## css framework
 going with boostrap since i don't know anything else
