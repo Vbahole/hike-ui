@@ -1,5 +1,8 @@
 #!/bin/bash
 yum update -y
+sudo yum install git -y
+amazon-linux-extras install nginx1
+sudo systemctl start nginx
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
