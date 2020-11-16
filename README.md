@@ -53,7 +53,8 @@ On the ec2 instance we need to start routing traffic through nginx.
 cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
 the default root location listed in there will be `/usr/share/nginx/html`  
 we can either dump our code here or edit the root location to point to our code. Let's use this location and create a directory and git clone some code to it
-in `/usr/share/nginx/html` run `mkdir hike` 
+in `/usr/share/nginx/html` run `sudo git clone https://github.com/Vbahole/hike-ui.git`  
+Now you can access (http://hike.vbahole.com/hike-ui/)
 
 
 
