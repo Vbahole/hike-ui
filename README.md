@@ -60,15 +60,22 @@ cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so
 the default root location listed in there will be `/usr/share/nginx/html`  
 we can either dump our code here or edit the root location to point to our code. 
 Let's use our default ec2-user home directory to git clone code into
-after `cd` you should be in `/home/ec2-user` run `sudo git clone https://github.com/Vbahole/hike-ui.git`
+after `cd` you should be in `/home/ec2-user` run `sudo git clone https://github.com/Vbahole/hike-ng.git`
 edit the nginx config (using nano):
 - change `user` from nginx to ec2-user
-- change the root location from `/usr/share/nginx/html` to `/home/ec2-user/hike-ui`
+- change the root location from `/usr/share/nginx/html` to `/home/ec2-user/hike-ng`
 - restart nginx with `sudo nginx -s reload`
-now (http://hike.vbahole.com/) will take you directly to the index.html page. Don't forget to `npm install` within your web code if needed.
+now (http://hike.vbahole.com/hike-ng/angularmaterial) will take you directly to the index.html page.
+I finally got this to work by building the angular app with `ng build --prod` and then taking the dist folder out to the ec2 instance
+not an ideal workflow but could be scripted to use scp on an npm build to push the prod content out there
 
-The restart the nginx service `sudo service nginx restart`
-Now you can access (http://hike.vbahole.com/hike-ui/)
+Restart the nginx service `sudo service nginx restart`
+`cd /usr/share/nginx/` 
+`sudo nano nginx.conf` 
+`cd /etc/nginx/` 
+
+#### Update angular base href
+to something like <base href="/hike-ng/angularmaterial/">
 
 to get the angular material site out there git clone into the same ecs-user home https://github.com/ajtowf/styling-applications-with-angular-material.git
 then edit the nginx.conf root location to point to /home/ec2-user/styling-applications-with-angular-material/src
@@ -76,6 +83,8 @@ restart nginx again.
 It won't work. We have yet to run `npm install` to get all of the packages under src. And then we need to get angular up and running with `ng build`
 but first we need angular `npm install -g @angular/cli` then `ng build` then `ng s -o`
 
+### permission issues
+nginx wants to serve from its default location but when i push content there i can't run `npm install` without a bunch of permission issues
 
 
 ## css framework
