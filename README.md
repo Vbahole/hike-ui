@@ -69,6 +69,9 @@ now (http://hike.vbahole.com/hike-ng/angularmaterial) will take you directly to 
 I finally got this to work by building the angular app with `ng build --prod` and then taking the dist folder out to the ec2 instance
 not an ideal workflow but could be scripted to use [scp](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) on an npm build to push the prod content out there
 `scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~`
+`scp -i hike-kp.pem /home/gooss22/blah.txt ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/var/www/html`
+but you have to be in the directory where the pem file is
+
 
 Restart the nginx service `sudo service nginx restart`
 `cd /usr/share/nginx/` 
