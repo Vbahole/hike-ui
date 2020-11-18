@@ -63,7 +63,7 @@ Let's use our default ec2-user home directory to git clone code into
 after `cd` you should be in `/home/ec2-user` run `sudo git clone https://github.com/Vbahole/hike-ng.git`
 edit the nginx config (using nano):
 - change `user` from nginx to ec2-user
-- change the root location from `/usr/share/nginx/html` to `/home/ec2-user/hike-ng`
+- change the root location from `/usr/share/nginx/html` to `/home/ec2-user`
 - restart nginx with `sudo nginx -s reload`
 now (http://hike.vbahole.com/hike-ng/angularmaterial) will take you directly to the index.html page.
 I finally got this to work by building the angular app with `ng build --prod` and then taking the dist folder out to the ec2 instance
@@ -81,6 +81,7 @@ use `-r` to recursively copy directories
 
 Restart the nginx service `sudo service nginx restart`
 `cd /usr/share/nginx/` 
+`cd /usr/share/nginx/html/`  
 `sudo nano nginx.conf` 
 `cd /etc/nginx/` 
 
