@@ -68,6 +68,7 @@ edit the nginx config (using nano):
 now (http://hike.vbahole.com/hike-ng/angularmaterial) will take you directly to the index.html page.
 I finally got this to work by building the angular app with `ng build --prod` and then taking the dist folder out to the ec2 instance
 not an ideal workflow but could be scripted to use [scp](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) on an npm build to push the prod content out there
+`scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~`
 
 Restart the nginx service `sudo service nginx restart`
 `cd /usr/share/nginx/` 
