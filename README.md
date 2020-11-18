@@ -71,6 +71,12 @@ not an ideal workflow but could be scripted to use [scp](https://docs.aws.amazon
 `scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~`
 `scp -i hike-kp.pem /home/gooss22/blah.txt ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/var/www/html`
 but you have to be in the directory where the pem file is
+use `-r` to recursively copy directories
+`scp -r -i hike-kp.pem /home/gooss22/projects/hike-ng/dist ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/`
+`sudo scp -r -i hike-kp.pem README.md ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng2` actually works
+`sudo scp -r -i hike-kp.pem ./src/main.ts ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng` works
+`sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/` may be what i need
+
 
 
 Restart the nginx service `sudo service nginx restart`
