@@ -56,6 +56,10 @@ On the new ec2 instance if you `curl http://localhost` you will get the nginx te
 The elastic ip is rigged to route 53 so [hike](http://hike.vbahole.com/) should also load this test page, as will the [elastic ip](http://34.201.181.141/)  
 We just need to get some web code out there to run inside of nginx/node.  
 On the ec2 instance we need to start routing traffic through nginx.  
+
+nginx configuration files are in `/etc/nginx/`  
+nginx default web content `/usr/share/nginx/html`  
+
 cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
 the default root location listed in there will be `/usr/share/nginx/html`  
 we can either dump our code here or edit the root location to point to our code. 
