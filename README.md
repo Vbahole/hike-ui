@@ -82,45 +82,25 @@ nginx default web content `/usr/share/nginx/html`
 
 cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
 the default root location listed in there will be `/usr/share/nginx/html`  
-we can either dump our code here or edit the root location to point to our code. 
-Let's use our default ec2-user home directory to git clone code into
-after `cd` you should be in `/home/ec2-user` run `sudo git clone https://github.com/Vbahole/hike-ng.git`
-edit the nginx config (using nano):
-- change `user` from nginx to ec2-user
-- change the root location from `/usr/share/nginx/html` to `/home/ec2-user`
-- restart nginx with `sudo nginx -s reload`
-now (http://hike.vbahole.com/hike-ng/angularmaterial) will take you directly to the index.html page.
-I finally got this to work by building the angular app with `ng build --prod` and then taking the dist folder out to the ec2 instance
-not an ideal workflow but could be scripted to use [scp](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) on an npm build to push the prod content out there
-`scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~`
-`scp -i hike-kp.pem /home/gooss22/blah.txt ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/var/www/html`
-but you have to be in the directory where the pem file is
-use `-r` to recursively copy directories
-`scp -r -i hike-kp.pem /home/gooss22/projects/hike-ng/dist ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/`
-`sudo scp -r -i hike-kp.pem README.md ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng2` actually works
-`sudo scp -r -i hike-kp.pem ./src/main.ts ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng` works
-`sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/` may be what i need
+edit the root location to point to our code.  
+right now the publish process is `npm run-script build --prod` which will [scp](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) the files out in the ec2-user root on the instance
+then that is copied to the default nginx web content location `/usr/share/nginx/html/hike-ng/angularmaterial`
 
+```
+"build-prod": "ng build --prod && sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/",
+```
 
-
+### useful nginx command
 Restart the nginx service `sudo service nginx restart`
 `cd /usr/share/nginx/` 
 `cd /usr/share/nginx/html/`  
 `sudo nano nginx.conf` 
 `cd /etc/nginx/` 
+`sudo nginx -s reload`  
 
-#### Update angular base href
-to something like <base href="/hike-ng/angularmaterial/">
-
-to get the angular material site out there git clone into the same ecs-user home https://github.com/ajtowf/styling-applications-with-angular-material.git
-then edit the nginx.conf root location to point to /home/ec2-user/styling-applications-with-angular-material/src
-restart nginx again.
-It won't work. We have yet to run `npm install` to get all of the packages under src. And then we need to get angular up and running with `ng build`
+#### getting the app to build
+run `npm install` to get all of the packages under src. And then we need to get angular up and running with `ng build`
 but first we need angular `npm install -g @angular/cli` then `ng build` then `ng s -o`
-
-### permission issues
-nginx wants to serve from its default location but when i push content there i can't run `npm install` without a bunch of permission issues
-
 
 ## css framework
 going with boostrap since i don't know anything else
