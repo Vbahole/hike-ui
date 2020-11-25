@@ -90,9 +90,6 @@ then that is copied to the default nginx web content location `/usr/share/nginx/
 
 ```
 "build-prod": "ng build --prod && 
-
-
-
 scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/",
 ```
 that then requires an extra hop within the ec2 instance to copy the files over to the nginx home: 
