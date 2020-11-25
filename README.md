@@ -71,7 +71,7 @@ the important bits are:
 - try_files [Routed apps must fallback to index.html](https://angular.io/guide/deployment#routed-apps-must-fallback-to-indexhtml). This is because angular has its own routing and doesn't need server-side help. If you refresh a page with a deep angular link that resource doesn't technically exist. angular makes it look like it does from the router in index.html. Therefore, you need to tell your web server (nginx) that when a request comes in that can't be served - don't panic - just point that request to index.html instead of an ugly 404 page or something.
 2. angular's base-href - inside of the angular index.html file right near the title is the tag `<base href="/">`. That thing corresponds to any directories you are storing the content under. If you want to serve multiple sites from nginx you can do that with server/location blocks in the config. But angular needs to know that when it requests resources there may be a directory structure it needs to follow. In this case its root `/` because that is the root we setup in nginx above.
 
-### Get some html out there
+### nginx setup
 On the new ec2 instance if you `curl http://localhost` you will get the nginx test page back. 
 The elastic ip is rigged to route 53 so [hike](http://hike.vbahole.com/) should also load this test page, as will the [elastic ip](http://34.201.181.141/)  
 We just need to get some web code out there to run inside of nginx/node.  
@@ -83,12 +83,26 @@ nginx default web content `/usr/share/nginx/html`
 cd to `/etc/nginx/` and backup nginx.conf `sudo cp nginx.conf nginx.conf.bak` so we can start to edit it
 the default root location listed in there will be `/usr/share/nginx/html`  
 edit the root location to point to our code.  
+
+### publish
 right now the publish process is `npm run-script build --prod` which will [scp](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) the files out in the ec2-user root on the instance
 then that is copied to the default nginx web content location `/usr/share/nginx/html/hike-ng/angularmaterial`
 
 ```
-"build-prod": "ng build --prod && sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/",
+"build-prod": "ng build --prod && 
+
+
+
+scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/",
 ```
+that then requires an extra hop within the ec2 instance to copy the files over to the nginx home: 
+`sudo cp /home/ec2-user/hike-ng /usr/share/nginx/html/hike-ng`
+
+we could skip that hop if we modify the build script to be:
+`"build-prod": "ng build --prod && sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/usr/share/nginx/html/hike-ng",
+`
+but always get permission denied - oh well
+
 
 ### useful nginx command
 Restart the nginx service `sudo service nginx restart`
