@@ -89,8 +89,9 @@ right now the publish process is `npm run-script build --prod` which will [scp](
 then that is copied to the default nginx web content location `/usr/share/nginx/html/hike-ng/angularmaterial`
 
 ```
-"build-prod": "ng build --prod && sudo scp -r -i hike-kp.pem ./dist ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/"
+"build-prod": "ng build --prod && sudo scp -r -i hike-kp.pem ./dist/angularmaterial ec2-user@ec2-34-201-181-141.compute-1.amazonaws.com:/home/ec2-user/hike-ng/"
 ```
+MAKE SURE that the `hike-ng` directory exists in the ec2-user home or you get odd cascading results with that scp for some reason
 that then requires an extra hop within the ec2 instance to copy the files over to the nginx home: 
 `sudo cp -r /home/ec2-user/hike-ng /usr/share/nginx/html/hike-ng`
 
