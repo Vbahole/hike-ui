@@ -14,6 +14,10 @@ Around the start of November 2020 the linux install on Lily's chromebook just st
 - `wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add`
 - `sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'`
 - `sudo apt-get install atom`
+- install nvm - `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash`
+- `npm install -g nodemon`
+- install [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+- `aws configure`
 
 OR use the handy shell script [chrome-linux-recovery.sh](https://raw.githubusercontent.com/Vbahole/hike-ui/master/chrome-linux-recovery.sh) I wrote. first `chmod +x linux-recovery.sh` then `./linux-recovery.sh`
 
