@@ -7,8 +7,9 @@ Around the start of November 2020 the linux install on Lily's chromebook just st
 1. kill the rogue ec2 instance
 2. follow directions below to recreate it to where it was (could also just be using docker OR a custom aws ami image)  
 ### Recovering linux(beta) on Chromebook:
-1. add aliases if you want to .bashrc
-2. update everything
+1. install nano  `sudo apt install -y nano`  
+2. add aliases if you want - `touch .bash_aliases` then edit that to your liking or see file in the root of this repo  
+3. update everything
 - `sudo apt-get update && sudo apt-get upgrade`
 - `sudo apt-get install git`
 - `wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add`
