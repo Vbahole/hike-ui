@@ -130,10 +130,10 @@ run `npm install` to get all of the packages under src. And then we need to get 
 but first we need angular `npm install -g @angular/cli` then `ng build` then `ng s -o`
 
 ## css framework
-going with boostrap since i don't know anything else
+css framework - material
 
 ## js framework
-maybe i need one? maybe i don't.
+angular
 
 ## ui needs data - get it by querying dynamo directly
 one way to get the data is to pull it directly from dynamo when the ui page loads
