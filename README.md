@@ -1,5 +1,16 @@
 # hike-ui
 
+## Where We At 2021
+- boost the number/quality of stats flowing out of the api
+- have different sets of stats packages to lazy load, some could be larger sets for graphing
+- graphs
+- streak support
+- make the UI look better - perpetual
+- convert hike-import code to lambda (and a chance to name it correctly)
+- upload to S3 event to trigger import
+- automated curl to push to s3??
+- users
+- leaderboard
 
 ## Linux Getting Fried on Chromebook
 Around the start of November 2020 the linux install on Lily's chromebook just stopped working - could not open the terminal, atom or access any files in the linux drive.  This really sucked. But I was able to disable then re-enable linux and it appears to be working now, but with none of my original files, updates, aliases or installs. but I learned a valuable lesson: 1. KEEP KEYPAIR (.pem) FILES IN SEVERAL LOCATIONS. without them my ec2 instance is no longer accessible so i have to kill it. Not a really big deal but always keep the key files on the linux and local drives. Could still get lost if the chromebook dies.
